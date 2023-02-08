@@ -1,9 +1,9 @@
 # tree-sitter-jinja2
 
-WIP. Not battle-tested.
+Really basic parser for really basic highlighting.
 
 ```bash
 npm install
-tree-sitter generate && tree-sitter parse example-file  
+tree-sitter generate && tree-sitter parse example-file.jinja2
 ```
 

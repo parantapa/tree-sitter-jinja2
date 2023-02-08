@@ -17,5 +17,14 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.19.1"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.jija2",
+      "file-types": [
+        "jinja",
+        "jinja2"
+      ]
+    }
+  ]
 }
