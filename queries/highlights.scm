@@ -1,5 +1,7 @@
-(expression) @tag
-(statement) @tag
+(expression) @string
+(statement) @variable.builtin
 (keyword) @keyword
 (comment) @comment
-(identifier) @string
+(identifier) @parameter
+(operator) @operator
+(string) @string

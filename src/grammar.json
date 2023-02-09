@@ -72,24 +72,20 @@
           "name": "statement_begin"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "keyword"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_white_space"
-              }
-            ]
-          }
+          "type": "SYMBOL",
+          "name": "keyword"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_inner_text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -147,20 +143,8 @@
           "value": "{{"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_white_space"
-              }
-            ]
-          }
+          "type": "PATTERN",
+          "value": "[^}]*"
         },
         {
           "type": "STRING",
@@ -203,6 +187,14 @@
         {
           "type": "STRING",
           "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "and"
+        },
+        {
+          "type": "STRING",
+          "value": "or"
         },
         {
           "type": "STRING",
@@ -326,9 +318,45 @@
       "type": "PATTERN",
       "value": "\\s+"
     },
+    "_inner_text": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "keyword"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_white_space"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "operator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        ]
+      }
+    },
     "identifier": {
       "type": "PATTERN",
-      "value": "[^\\s{#%}]+"
+      "value": "[\\w_]+"
+    },
+    "operator": {
+      "type": "PATTERN",
+      "value": "[^\\w_{#%}'\"]+"
+    },
+    "string": {
+      "type": "PATTERN",
+      "value": "['\"][^'\"]*['\"]"
     }
   },
   "extras": [

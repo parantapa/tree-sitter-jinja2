@@ -7,17 +7,7 @@
   {
     "type": "expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "keyword",
@@ -64,11 +54,19 @@
           "named": true
         },
         {
+          "type": "operator",
+          "named": true
+        },
+        {
           "type": "statement_begin",
           "named": true
         },
         {
           "type": "statement_end",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -110,6 +108,10 @@
   },
   {
     "type": "%}",
+    "named": false
+  },
+  {
+    "type": "and",
     "named": false
   },
   {
@@ -225,6 +227,14 @@
     "named": false
   },
   {
+    "type": "operator",
+    "named": true
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
     "type": "pluralize",
     "named": false
   },
@@ -235,6 +245,10 @@
   {
     "type": "set",
     "named": false
+  },
+  {
+    "type": "string",
+    "named": true
   },
   {
     "type": "trans",

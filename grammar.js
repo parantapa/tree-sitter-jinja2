@@ -34,18 +34,22 @@ module.exports = grammar ({
 
     _node: $ => choice($.statement, $.expression, $.comment, $._text),
 
-    statement: $ => seq($.statement_begin, repeat1(choice($.keyword, $.identifier, $._white_space)), $.statement_end),
+    statement: $ => seq($.statement_begin, $.keyword, optional($._inner_text), $.statement_end),
     statement_begin: $ => seq('{%', optional($.white_space_control)),
     statement_end: $ => seq(optional($.white_space_control), '%}'),
 
-    expression: $ => seq('{{', repeat1(choice($.identifier, $._white_space)), '}}'),
+    expression: $ => seq('{{', /[^}]*/, '}}'),
 
     comment: $ => seq('{#', /[^#]*/, '#}'),
 
-    keyword: $ => choice('for', 'in', 'endfor', 'if', 'endif', 'else', 'elif', 'raw', 'endraw', 'macro', 'endmacro', 'extends', 'block', 'endblock', 'call', 'endcall', 'filter', 'endfilter', 'set', 'endset', 'include', 'import', 'from', 'autoescape', 'endautoescape', 'trans', 'endtrans', 'pluralize', 'with', 'endwith', 'debug', 'do'),
+    keyword: $ => choice('for', 'in', 'endfor', 'if', 'and', 'or', 'endif', 'else', 'elif', 'raw', 'endraw', 'macro', 'endmacro', 'extends', 'block', 'endblock', 'call', 'endcall', 'filter', 'endfilter', 'set', 'endset', 'include', 'import', 'from', 'autoescape', 'endautoescape', 'trans', 'endtrans', 'pluralize', 'with', 'endwith', 'debug', 'do'),
     white_space_control: $ => /[-+]/,
     _white_space: $ => /\s+/,
 
-    identifier: $ => /[^\s{#%}]+/,
+    _inner_text: $ => repeat1(choice($.keyword, $.identifier, $._white_space, $.operator, $.string)),
+
+    identifier: $ => /[\w_]+/,
+    operator: $ => /[^\w_{#%}'"]+/,
+    string: $ => /['"][^'"]*['"]/,
   }
 });
