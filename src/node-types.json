@@ -7,6 +7,42 @@
   {
     "type": "expression",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_begin",
+          "named": true
+        },
+        {
+          "type": "expression_end",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression_begin",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "expression_end",
+    "named": true,
     "fields": {}
   },
   {
