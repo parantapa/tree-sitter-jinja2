@@ -38,8 +38,10 @@ module.exports = grammar ({
     statement_begin: $ => seq('{%', optional($.white_space_control)),
     statement_end: $ => seq(optional($.white_space_control), '%}'),
 
-    expression: $ => seq('{{', /[^}]*/, '}}'),
-
+    expression: $ => seq($.expression_begin, $._inner_text2, $.expression_end),
+    expression_begin: $ => seq('{{'),
+    expression_end: $ => seq('}}'),
+   
     comment: $ => seq('{#', /[^#]*/, '#}'),
 
     keyword: $ => choice('for', 'in', 'endfor', 'if', 'and', 'or', 'endif', 'else', 'elif', 'raw', 'endraw', 'macro', 'endmacro', 'extends', 'block', 'endblock', 'call', 'endcall', 'filter', 'endfilter', 'set', 'endset', 'include', 'import', 'from', 'autoescape', 'endautoescape', 'trans', 'endtrans', 'pluralize', 'with', 'endwith', 'debug', 'do'),
@@ -47,6 +49,8 @@ module.exports = grammar ({
     _white_space: $ => /\s+/,
 
     _inner_text: $ => repeat1(choice($.keyword, $.identifier, $._white_space, $.operator, $.string)),
+    _inner_text2: $ => repeat1(choice($.identifier, $._white_space, $.operator, $.string)),
+
 
     identifier: $ => /[\w_]+/,
     operator: $ => /[^\w_{#%}'"]+/,
