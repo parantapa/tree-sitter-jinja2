@@ -7,7 +7,18 @@
   {
     "type": "expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "identifier": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -18,10 +29,6 @@
         },
         {
           "type": "expression_end",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {

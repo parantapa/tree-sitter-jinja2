@@ -49,7 +49,7 @@ module.exports = grammar ({
     _white_space: $ => /\s+/,
 
     _inner_text: $ => repeat1(choice($.keyword, $.identifier, $._white_space, $.operator, $.string)),
-    _inner_text2: $ => repeat1(choice($.identifier, $._white_space, $.operator, $.string)),
+    _inner_text2: $ => repeat1(choice(field('identifier', $.identifier), $._white_space, $.operator, $.string)),
 
 
     identifier: $ => /[\w_]+/,
